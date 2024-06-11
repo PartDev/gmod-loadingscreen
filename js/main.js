@@ -62,7 +62,7 @@ function SetFilesNeeded(needed) {
 var fileCount = 0;
 function DownloadingFile(filename) {
   filename = filename.replace("'", "").replace("?", "");
-  debug("DownloadingFile called '" + filename + "'");
+  debug("Bir dosya indiriliyor '" + filename + "'");
   downloadingFileCalled = true;
   $("#history").prepend('<div class="history-item">' + filename + "</div>");
   $(".history-item").each(function(i, el) {
@@ -83,13 +83,13 @@ function SetStatusChanged(status) {
     }
     $(el).css("opacity", "" + 1 - i * 0.1);
   });
-  if (status === "Workshop Complete") {
+  if (status === "Modlar tamamlandı") {
     allow_increment = false;
     setLoad(80);
-  } else if (status === "Client info sent!") {
+  } else if (status === "Alıcı bilgisi gönderildi!") {
     allow_increment = false;
     setLoad(95);
-  } else if (status === "Starting Lua...") {
+  } else if (status === "Lua başlatılıyor...") {
     setLoad(100);
   } else {
     if (allow_increment) {
@@ -108,10 +108,10 @@ function loadAll() {
 
   // first time loading if DownloadingFile isn't called after some time
   setTimeout(function() {
-    debug("Checking if first time loading.. " + downloadingFileCalled);
+    debug("İlk defa girip girmediğin kontrol ediliyor.. " + downloadingFileCalled);
     if (downloadingFileCalled) {
       announce(
-        "This is your first time loading please wait for the files to download",
+        "Sunucumuza ilk defa giriyorsun bu yüzden sunucu modları indirilecektir lütfen bekle!",
         true
       );
     }
@@ -196,7 +196,7 @@ $(document).ready(function() {
         if (needed > 0) {
           needed = needed - 1;
           SetFilesNeeded(needed);
-          DownloadingFile("Filename " + needed);
+          DownloadingFile("Dosya Adı " + needed);
         }
       }, 500);
 
